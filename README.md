@@ -41,7 +41,10 @@ python inferencers/anomaly_detection_torch_camera.py \
   --weight=results/patchcore/ice_pop/run/weights/torch/model.pt"
 ```
 
+# Convert TensorFlow Lite model and run inference.
+- [Anomaly detection with TensorFlow Lite.](./docs/anomaly_detection_with_tflite.md)
 
 # Reference
 
 - [Anomalib](https://openvinotoolkit.github.io/anomalib/index.html)
+- [onn2tf](https://github.com/PINTO0309/onnx2tf)

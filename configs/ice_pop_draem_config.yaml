@@ -8,7 +8,8 @@ dataset:
   mask_dir: null
   extensions: null
   task: classification
-  train_batch_size: 32
+  category: ice_pop
+  train_batch_size: 8
   eval_batch_size: 32
   num_workers: 8
   image_size: 256 # dimensions to which images are resized (mandatory)
@@ -30,13 +31,15 @@ dataset:
     random_tile_count: 16
 
 model:
-  name: padim
-  backbone: resnet18
-  pre_trained: true
-  layers:
-    - layer1
-    - layer2
-    - layer3
+  name: draem
+  anomaly_source_path: null # optional, e.g. ./datasets/dtd
+  lr: 0.0001
+  enable_sspcab: false
+  sspcab_lambda: 0.1
+  early_stopping:
+    patience: 20
+    metric: image_AUROC
+    mode: max
   normalization_method: min_max # options: [none, min_max, cdf]
 
 metrics:
@@ -67,8 +70,7 @@ logging:
   log_graph: false # Logs the model graph to respective logger.
 
 optimization:
-  export_mode: torch # options: torch, onnx, openvino
-
+  export_mode: onnx # options: torch, onnx, openvino
 # PL Trainer Args. Don't add extra parameter here.
 trainer:
   enable_checkpointing: true
@@ -83,7 +85,7 @@ trainer:
   check_val_every_n_epoch: 1 # Don't validate before extracting features.
   fast_dev_run: false
   accumulate_grad_batches: 1
-  max_epochs: 1
+  max_epochs: 700
   min_epochs: null
   max_steps: -1
   min_steps: null

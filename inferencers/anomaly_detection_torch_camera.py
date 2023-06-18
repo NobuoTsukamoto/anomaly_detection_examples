@@ -2,17 +2,14 @@
 # -*- coding: utf-8 -*-
 
 """
-    TensorFlow Lite Object detection with RealSense.
+    Anomaly detection with anomalib.
 
-    Copyright (c) 2021 Nobuo Tsukamoto
+    Copyright (c) 2023 Nobuo Tsukamoto
     This software is released under the MIT License.
     See the LICENSE file in the project root for more information.
 """
 
 import argparse
-import colorsys
-import os
-import random
 import time
 
 
@@ -23,12 +20,6 @@ import pyrealsense2 as rs
 from pathlib import Path
 
 import torch
-
-from anomalib.data.utils import (
-    generate_output_image_filename,
-    get_image_filenames,
-    read_image,
-)
 from anomalib.deploy import TorchInferencer
 from anomalib.post_processing import Visualizer, anomaly_map_to_color_map
 
